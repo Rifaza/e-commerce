@@ -14,12 +14,10 @@ export class HomeComponent implements OnInit{
   constructor(private productService: ProductService){
   }
   ngOnInit(): void {
-    debugger;
     this.loadAllProducts();
   }
   loadAllProducts()
   {
-    debugger;
   this.productService.getAllProducts().subscribe((result: any)=>{
     this.productList = result.data
   })

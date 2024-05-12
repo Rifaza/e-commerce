@@ -12,9 +12,9 @@ export const routes: Routes = [
     },
     {   
         path: 'cart',
-    component: CartComponent
+        component: CartComponent
     },
-{   path: 'sale',
-component: SaleComponent
-}
+    {   path: 'sale',
+        component: SaleComponent
+    }
 ];
