@@ -20,18 +20,21 @@ cartObj: any = {
 }
   constructor(private productService: ProductService){
   }
+  
   ngOnInit(): void {
     this.loadAllProducts();
+    
   }
-  loadAllProducts(){
 
+  loadAllProducts(){
   this.productService.getAllProducts().subscribe((result: any)=>{
     this.productList = result.data;
-    console.log('resu', this.productList);
+    console.log('result', this.productList);
   })
   }
+
   addItemToCart(productId: number){
-    debugger;
+
     this.cartObj.ProductId = productId;
     this.productService.addToCart(this.cartObj).subscribe((result: any)=>{
     // whenever we added something into the cart we need to emit that subject
@@ -43,6 +46,19 @@ cartObj: any = {
     }
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+    
 })
 
   }

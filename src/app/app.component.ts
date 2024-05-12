@@ -26,7 +26,7 @@ export class AppComponent implements OnInit{
   loadCart() {
     this.productService.getCartItemsByCusId(1).subscribe((res: any)=>{
       this.cartProducts =  res.data;
-      debugger;
+     
     })
   }
 }

@@ -12,6 +12,7 @@ export class ProductService {
   constructor(private http: HttpClient) { }
 
   getAllProducts():Observable<any[]>{
+
     return this.http.get<any[]>("https://onlinetestapi.gerasim.in/api/Ecomm/GetAllProducts")
   }
   
