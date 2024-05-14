@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { ActivatedRoute, RouterOutlet } from '@angular/router';
 import { ProductService } from './services/product.service';
 import { CommonModule } from '@angular/common';
-import { Router } from 'express';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -16,7 +16,7 @@ export class AppComponent implements OnInit{
   cartProducts: any[] = []; // we need to store the cart items
   subTotal: number = 0;
 
-  constructor(private productService: ProductService){
+  constructor(private productService: ProductService, private router: Router, private activatedRoute: ActivatedRoute){
     // we need to subscribe to that emitted cartAddedSubject, then only imediatly the cart products will be updated
     this.productService.cartAddedSubject.subscribe(res=>{
       this.loadCart();
@@ -28,6 +28,7 @@ export class AppComponent implements OnInit{
   }
 
   loadCart() {
+    this.subTotal = 0;
     // we are using customerId 1 as a defult for now.
     this.productService.getCartItemsByCusId(1).subscribe((res: any)=>{
       this.cartProducts =  res.data;
@@ -39,6 +40,12 @@ export class AppComponent implements OnInit{
   }
 
   // we have to open the sale page when we click on the checkout
-  redirectToSale(){
+  redirectToSale(sub: number){
+    console.log('redirectToSale', sub);
+    debugger;
+
+  this.router.navigate(['/sale'], { relativeTo: this.activatedRoute });
+    // this.router.navigateByUrl("sale");
+  
   }
 }
