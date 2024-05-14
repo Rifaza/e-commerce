@@ -11,6 +11,8 @@ import { CommonModule } from '@angular/common';
 })
 export class HomeComponent implements OnInit{
   productList: any[] = [];
+  categories: any[] = [];
+  selectedCategory: number = 0;
   cartObj: any = {
     "CartId": 0,
     "CustId": 1,
@@ -23,16 +25,26 @@ export class HomeComponent implements OnInit{
   
   ngOnInit(): void {
     this.loadAllProducts();
-    
+    this.loadCatogories();
   }
 
   loadAllProducts(){
   this.productService.getAllProducts().subscribe((result: any)=>{
     this.productList = result.data;
-    console.log('result', this.productList);
   })
   }
-
+  
+  getAllProductsByCategory(id: number){
+    this.selectedCategory = id;
+    this.productService.getAllProductsByCategory(id).subscribe((result: any)=>{
+      this.productList = result.data;
+    })
+    }
+  
+    loadCatogories(){
+      this.productService.getAllCategory().subscribe((result: any)=>{
+        this.categories = result.data;})
+      }
   addItemToCart(productId: number){
     this.cartObj.ProductId = productId;
     this.productService.addToCart(this.cartObj).subscribe((result: any)=>{

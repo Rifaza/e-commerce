@@ -14,7 +14,13 @@ export class ProductService {
   getAllProducts():Observable<any[]>{
     return this.http.get<any[]>("https://onlinetestapi.gerasim.in/api/Ecomm/GetAllProducts")
   }
-  
+
+  getAllProductsByCategory(id: number) : Observable<any[]>{
+    return this.http.get<any[]>("https://onlinetestapi.gerasim.in/api/Ecomm/GetAllProductsByCategoryId?id="+id)
+  }
+  getAllCategory():Observable<any[]>{
+    return this.http.get<any[]>("https://onlinetestapi.gerasim.in/api/Ecomm/GetAllCategory")
+  }
   addToCart(obj: any):Observable<any>{
     return this.http.post<any>("https://onlinetestapi.gerasim.in/api/Ecomm/AddToCart", obj)
   }
@@ -29,7 +35,9 @@ export class ProductService {
     }
   
     makeSale(obj: any) : Observable<any> {
-      debugger;
-      return this.http.post<any>("http://onlinetestapi.gerasim.in/api/Ecomm/AddNewSale",obj);
+      return this.http.post<any>("https://onlinetestapi.gerasim.in/api/Ecomm/AddNewSale",obj);
     }
-}
+
+
+    
+  }
